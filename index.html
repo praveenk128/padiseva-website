@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swamiye Saranam Ayyappa</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid #444;
+    }
+    .lang-toggle {
+      background: none;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .container {
+      margin-top: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 20px;
+    }
+    .announcement {
+      background: #444;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    h1 { font-size: 2.5rem; letter-spacing: 1px; margin-bottom: 20px; }
+    p { font-size: 1.1rem; margin-bottom: 20px; }
+    .seva-period { background: #222; padding: 15px; margin-bottom: 30px; border-radius: 10px; font-weight: 600; }
+    .buttons a {
+      display: inline-block; background: #fff; color: #000; padding: 12px 24px;
+      border-radius: 8px; margin: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s;
+    }
+    .buttons a:hover { background: #f0f0f0; transform: scale(1.05); }
+    section { margin-top: 50px; padding: 20px; border-top: 1px solid #444; text-align: left; max-width: 700px; margin-left: auto; margin-right: auto; }
+    section h2 { text-align: center; margin-bottom: 20px; }
+    form { display: flex; flex-direction: column; gap: 15px; }
+    input, select, button { padding: 10px; border-radius: 6px; border: none; font-size: 1rem; }
+    input, select { width: 100%; }
+    button { background: #fff; color: #000; cursor: pointer; font-weight: 600; }
+    button:hover { background: #f0f0f0; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+    .gallery img { width: 100%; border-radius: 10px; border: 2px solid #fff; }
+    .available-dates, .collection-info { margin-top: 20px; background: #222; padding: 15px; border-radius: 8px; display: none; }
+    .toggle-button {
+      display: inline-block; background: #fff; color: #000; padding: 10px 20px;
+      border-radius: 8px; margin: 10px 0; cursor: pointer; font-weight: 600; border: none; transition: all 0.3s;
+    }
+    .toggle-button:hover { background: #f0f0f0; transform: scale(1.05); }
+    option.booked { color: red; font-weight: 600; }
+    option.available { color: green; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>🕉 Swamiye Saranam Ayyappa</h2>
+    <button class="lang-toggle" onclick="toggleLanguage()">తెలుగు</button>
+  </header>
+
+  <div class="container">
+    <h1 id="title">Free Silver Padi Pooja Set for Seva</h1>
+    <p id="desc">In devotion to Lord Ayyappa, our family offers free Silver padi set, Brass Padi set for seva.<br>Swamiye Saranam Ayyappa 🙏</p>
+
+    <div class="announcement" id="announcement">
+      All are invited for Maha Padi Pooja hosted by S.Praveen Swamy on 20 December 2025
+    </div>
+
+    <div class="buttons">
+      <a href="#about" id="knowMoreBtn">Know More</a>
+      <a href="#request" id="checkAvailBtn">Check Availability of Padi Set / పడి సెట్ అందుబాటులో ఉందో చూడండి</a>
+    </div>
+  </div>
+
+  <section id="about">
+    <h2 id="about-title">About the Seva</h2>
+    <p id="about-desc">This seva was started by Praveen Swamy in devotion to Lord Ayyappa in 2015. We provide free silver and brass padi sets for pooja seva to devotees, spreading blessings and spiritual joy.</p>
+  </section>
+
+  <section id="request">
+    <h2 id="request-title">Check Availability of Padi Set / పడి సెట్ అందుబాటులో ఉందో చూడండి</h2>
+    <div class="seva-period" id="sevaPeriod">Seva Period: Nov 2025 – 1st week of Jan 2026 / సేవా కాలం: నవంబర్ 2025 – జనవరి 1వ వారం 2026</div>
+    <form id="padiForm">
+      <input type="text" id="name" placeholder="Your Name / పేరు" required>
+      <input type="text" id="place" placeholder="Place / ప్రదేశం" required>
+      <input type="tel" id="phone" placeholder="Phone / ఫోన్" required>
+      <label id="agreeLabel"><input type="checkbox" id="agree" required> I agree to use this only for pooja / ఇది కేవలం పూజ కోసం ఉపయోగిస్తాను అని అంగీకరిస్తున్నాను</label>
+      <button type="submit" id="checkBtn">Check Availability / అందుబాటులో ఉందో చూడండి</button>
+    </form>
+
+    <div class="available-dates" id="availableDates">
+      <h3>Silver Padi Set / వెండి పడి</h3>
+      <select id="silverDatesList"></select>
+
+      <h3>Brass Padi Set / రాగి పడి</h3>
+      <select id="brassDatesList"></select>
+    </div>
+
+    <div class="collection-info" id="collectionInfo">
+      <h3>Contact & Collection Details / సంప్రదింపు & సేకరణ వివరాలు</h3>
+      <p id="contactName">Name / పేరు: S.Praveen Swamy</p>
+      <p id="contactPhone">Phone / ఫోన్: +91 9346541004,9849351565</p>
+      <p id="contactAddress">Address / చిరునామా: 5-1-366, old ghasmandi, ranigunj</p>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2 id="gallery-title">Gallery / గ్యాలరీ</h2>
+    <button class="toggle-button" onclick="toggleGallery('silverGallery')" id="silverGalleryBtn">Silver Padi Set / వెండి పడి</button>
+    <div id="silverGallery" class="gallery" style="display:none;">
+      <img src="images/silver 1.jpeg" alt="Silver Padi 1">
+      <img src="images/silver 2.jpeg" alt="Silver Padi 2">
+      <img src="images/silver 3.jpeg" alt="Silver Padi 3">
+      <img src="images/silver4.jpeg" alt="Silver Padi 4">
+    </div>
+
+    <button class="toggle-button" onclick="toggleGallery('brassGallery')" id="brassGalleryBtn">Brass Padi Set / రాగి పడి</button>
+    <div id="brassGallery" class="gallery" style="display:none;">
+      <img src="images/brass1.jpeg" alt="Brass Padi 1">
+      <img src="images/brass 2.jpeg" alt="Brass Padi 2">
+      <img src="images/brass3.jpeg" alt="Brass Padi 3">
+    </div>
+  </section>
+
+  <script>
+    let currentLang = 'en';
+
+    const silverDates = [
+  { date: 'Nov 10, 2025', booked: false },{ date: 'Nov 11, 2025', booked: false },
+  { date: 'Nov 12, 2025', booked: false },{ date: 'Nov 13, 2025', booked: false },
+  { date: 'Nov 14, 2025', booked: false },{ date: 'Nov 15, 2025', booked: false },
+  { date: 'Nov 16, 2025', booked: false },{ date: 'Nov 17, 2025', booked: false },
+  { date: 'Nov 18, 2025', booked: false },{ date: 'Nov 19, 2025', booked: false },
+  { date: 'Nov 20, 2025', booked: false },{ date: 'Nov 21, 2025', booked: false },
+  { date: 'Nov 22, 2025', booked: false },{ date: 'Nov 23, 2025', booked: false },
+  { date: 'Nov 24, 2025', booked: false },{ date: 'Nov 25, 2025', booked: false },
+  { date: 'Nov 26, 2025', booked: false },{ date: 'Nov 27, 2025', booked: false },
+  { date: 'Nov 28, 2025', booked: false },{ date: 'Nov 29, 2025', booked: false },
+  { date: 'Nov 30, 2025', booked: false },
+  { date: 'Dec 1, 2025', booked: false },{ date: 'Dec 2, 2025', booked: false },
+  { date: 'Dec 3, 2025', booked: false },{ date: 'Dec 4, 2025', booked: false },
+  { date: 'Dec 5, 2025', booked: false },{ date: 'Dec 6, 2025', booked: false },
+  { date: 'Dec 7, 2025', booked: false },{ date: 'Dec 8, 2025', booked: false },
+  { date: 'Dec 9, 2025', booked: false },{ date: 'Dec 10, 2025', booked: false },
+  { date: 'Dec 11, 2025', booked: false },{ date: 'Dec 12, 2025', booked: false },
+  { date: 'Dec 13, 2025', booked: false },{ date: 'Dec 14, 2025', booked: false },
+  { date: 'Dec 15, 2025', booked: false },{ date: 'Dec 16, 2025', booked: false },
+  { date: 'Dec 17, 2025', booked: false },{ date: 'Dec 18, 2025', booked: false },
+  { date: 'Dec 19, 2025', booked: false },{ date: 'Dec 20, 2025', booked: true },
+  { date: 'Dec 21, 2025', booked: false },{ date: 'Dec 22, 2025', booked: false },
+  { date: 'Dec 23, 2025', booked: false },{ date: 'Dec 24, 2025', booked: false },
+  { date: 'Dec 25, 2025', booked: false },{ date: 'Dec 26, 2025', booked: false },
+  { date: 'Dec 27, 2025', booked: false },{ date: 'Dec 28, 2025', booked: false },
+  { date: 'Dec 29, 2025', booked: false },{ date: 'Dec 30, 2025', booked: false },
+  { date: 'Dec 31, 2025', booked: false },{ date: 'Jan 1, 2026', booked: false },
+  { date: 'Jan 2, 2026', booked: false },{ date: 'Jan 3, 2026', booked: false },
+  { date: 'Jan 4, 2026', booked: false },{ date: 'Jan 5, 2026', booked: false },
+  { date: 'Jan 6, 2026', booked: false },{ date: 'Jan 7, 2026', booked: false },
+  { date: 'Jan 8, 2026', booked: false },{ date: 'Jan 9, 2026', booked: false },
+  { date: 'Jan 10, 2026', booked: false },{ date: 'Jan 11, 2026', booked: false },
+  { date: 'Jan 12, 2026', booked: false },{ date: 'Jan 13, 2026', booked: false },
+  { date: 'Jan 14, 2026', booked: false },{ date: 'Jan 15, 2026', booked: false }
+];
+
+const brassDates = [
+  { date: 'Nov 10, 2025', booked: false },{ date: 'Nov 11, 2025', booked: false },
+  { date: 'Nov 12, 2025', booked: false },{ date: 'Nov 13, 2025', booked: false },
+  { date: 'Nov 14, 2025', booked: false },{ date: 'Nov 15, 2025', booked: false },
+  { date: 'Nov 16, 2025', booked: false },{ date: 'Nov 17, 2025', booked: false },
+  { date: 'Nov 18, 2025', booked: false },{ date: 'Nov 19, 2025', booked: false },
+  { date: 'Nov 20, 2025', booked: false },{ date: 'Nov 21, 2025', booked: false },
+  { date: 'Nov 22, 2025', booked: false },{ date: 'Nov 23, 2025', booked: false },
+  { date: 'Nov 24, 2025', booked: false },{ date: 'Nov 25, 2025', booked: false },
+  { date: 'Nov 26, 2025', booked: false },{ date: 'Nov 27, 2025', booked: false },
+  { date: 'Nov 28, 2025', booked: false },{ date: 'Nov 29, 2025', booked: false },
+  { date: 'Nov 30, 2025', booked: false },
+  { date: 'Dec 1, 2025', booked: false },{ date: 'Dec 2, 2025', booked: false },
+  { date: 'Dec 3, 2025', booked: false },{ date: 'Dec 4, 2025', booked: false },
+  { date: 'Dec 5, 2025', booked: false },{ date: 'Dec 6, 2025', booked: false },
+  { date: 'Dec 7, 2025', booked: false },{ date: 'Dec 8, 2025', booked: false },
+  { date: 'Dec 9, 2025', booked: false },{ date: 'Dec 10, 2025', booked: false },
+  { date: 'Dec 11, 2025', booked: false },{ date: 'Dec 12, 2025', booked: false },
+  { date: 'Dec 13, 2025', booked: false },{ date: 'Dec 14, 2025', booked: false },
+  { date: 'Dec 15, 2025', booked: false },{ date: 'Dec 16, 2025', booked: false },
+  { date: 'Dec 17, 2025', booked: false },{ date: 'Dec 18, 2025', booked: false },
+  { date: 'Dec 19, 2025', booked: false },{ date: 'Dec 20, 2025', booked: false },
+  { date: 'Dec 21, 2025', booked: false },{ date: 'Dec 22, 2025', booked: false },
+  { date: 'Dec 23, 2025', booked: false },{ date: 'Dec 24, 2025', booked: false },
+  { date: 'Dec 25, 2025', booked: false },{ date: 'Dec 26, 2025', booked: false },
+  { date: 'Dec 27, 2025', booked: false },{ date: 'Dec 28, 2025', booked: false },
+  { date: 'Dec 29, 2025', booked: false },{ date: 'Dec 30, 2025', booked: false },
+  { date: 'Dec 31, 2025', booked: false },{ date: 'Jan 1, 2026', booked: false },
+  { date: 'Jan 2, 2026', booked: false },{ date: 'Jan 3, 2026', booked: false },
+  { date: 'Jan 4, 2026', booked: false },{ date: 'Jan 5, 2026', booked: false },
+  { date: 'Jan 6, 2026', booked: false },{ date: 'Jan 7, 2026', booked: false },
+  { date: 'Jan 8, 2026', booked: false },{ date: 'Jan 9, 2026', booked: false },
+  { date: 'Jan 10, 2026', booked: false },{ date: 'Jan 11, 2026', booked: false },
+  { date: 'Jan 12, 2026', booked: false },{ date: 'Jan 13, 2026', booked: false },
+  { date: 'Jan 14, 2026', booked: false },{ date: 'Jan 15, 2026', booked: false }
+];
+
+    const form = document.getElementById('padiForm');
+    const datesDiv = document.getElementById('availableDates');
+    const collectionInfo = document.getElementById('collectionInfo');
+    const silverDatesList = document.getElementById('silverDatesList');
+    const brassDatesList = document.getElementById('brassDatesList');
+    const langBtn = document.querySelector('.lang-toggle');
+
+    function updateAvailability() {
+      silverDatesList.innerHTML = '';
+      silverDates.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.date;
+        option.textContent = item.date + (item.booked ? ' (Booked)' : ' (Available)');
+        option.className = item.booked ? 'booked' : 'available';
+        silverDatesList.appendChild(option);
+      });
+
+      brassDatesList.innerHTML = '';
+      brassDates.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.date;
+        option.textContent = item.date + (item.booked ? ' (Booked)' : ' (Available)');
+        option.className = item.booked ? 'booked' : 'available';
+        brassDatesList.appendChild(option);
+      });
+
+      datesDiv.style.display = 'block';
+      collectionInfo.style.display = 'none';
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      updateAvailability();
+    });
+
+    silverDatesList.addEventListener('change', function() {
+      collectionInfo.style.display = 'block';
+    });
+    brassDatesList.addEventListener('change', function() {
+      collectionInfo.style.display = 'block';
+    });
+
+    function toggleGallery(id) {
+      const galleryDiv = document.getElementById(id);
+      galleryDiv.style.display = galleryDiv.style.display === 'none' ? 'grid' : 'none';
+    }
+
+    function toggleLanguage() {
+      if(currentLang === 'en') {
+        document.getElementById('title').textContent = "పూజ కోసం ఉచిత వెండి పడి సెట్";
+        document.getElementById('desc').innerHTML = "లార్డ్ అయ్యప్ప భక్తి కోసం, మా కుటుంబం ఉచిత వెండి మరియు రాగి పడి సెట్‌లను అందిస్తోంది.<br>స్వామియే శరణం అయ్యప్ప 🙏";
+        document.getElementById('announcement').textContent = "అన్ని భక్తులను 20 డిసెంబర్ 2025 న S. ప్రవీణ్ స్వామి ఆతిధ్యం వహించే మహా పడి పూజకు ఆహ్వానించబడుతున్నారు";
+        document.getElementById('about-title').textContent = "పూజ గురించి";
+        document.getElementById('about-desc').textContent = "ఈ సేవ 2015లో ప్రవీణ్ స్వామి భక్తి కోసం ప్రారంభించారు. మేము భక్తులకు ఉచిత వెండి మరియు రాగి పడి సెట్‌లు అందిస్తాము, ఆశీర్వాదాలు మరియు ఆధ్యాత్మిక ఆనందాన్ని పంచడం కోసం.";
+        document.getElementById('request-title').textContent = "పడి సెట్ అందుబాటులో ఉందో చూడండి";
+        document.getElementById('sevaPeriod').textContent = "సేవా కాలం: నవంబర్ 2025 – జనవరి 1వ వారం 2026";
+        document.getElementById('name').placeholder = "పేరు";
+        document.getElementById('place').placeholder = "ప్రదేశం";
+        document.getElementById('phone').placeholder = "ఫోన్";
+        document.getElementById('agreeLabel').innerHTML = "<input type='checkbox' id='agree' required> ఇది కేవలం పూజ కోసం ఉపయోగిస్తాను అని అంగీకరిస్తున్నాను";
+        document.getElementById('checkBtn').textContent = "అందుబాటులో ఉందో చూడండి";
+        document.getElementById('knowMoreBtn').textContent = "మరిన్ని వివరాలు";
+        document.getElementById('checkAvailBtn').textContent = "పడి సెట్ అందుబాటులో ఉందో చూడండి";
+        document.getElementById('gallery-title').textContent = "గ్యాలరీ";
+        document.getElementById('silverGalleryBtn').textContent = "వెండి పడి";
+        document.getElementById('brassGalleryBtn').textContent = "రాగి పడి";
+        langBtn.textContent = "English";
+        currentLang = 'te';
+      } else {
+        location.reload();
+      }
+    }
+  </script>
+</body>
+</html>
